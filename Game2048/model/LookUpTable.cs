@@ -13,7 +13,7 @@ namespace Game2048.model
 
         static LookUpTable()
         {
-
+            //try change
         }
 
 
