@@ -14,10 +14,10 @@ namespace Game2048.model
         private uint _score;
         private bool _isWin;
 
-        public ShiftedRow(ushort shifted, int emptyCells, int merges, uint score, bool isWin)
+        public ShiftedRow(int emptyCells, ushort shifted, int merges, uint score, bool isWin)
         {
-            _shifted = shifted;
             _emptyCells = emptyCells;
+            _shifted = shifted;
             _merges = merges;
             _score = score;
             _isWin = isWin;

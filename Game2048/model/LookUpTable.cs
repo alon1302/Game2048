@@ -6,25 +6,48 @@ using System.Threading.Tasks;
 
 namespace Game2048.model
 {
-    class LookUpTable
+    class LookupTable
     {
         public const int ROW_SIZE = 4;
-        public static ShiftedRow[] leftShifts = new ShiftedRow[0x10000];
 
-        static LookUpTable()
+        private static readonly object threadLock = new object();
+
+        private static LookupTable instance = null;
+        public ShiftedRow[] leftShifts = new ShiftedRow[0x10000];
+
+        private LookupTable()
         {
-            //try change
+            InitTable();
         }
 
+        public static LookupTable Instance
+        {
+            get
+            {
+                lock (threadLock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new LookupTable();
+                    }
+                    return instance;
+                }
+            }
+        }
 
-        public void init_tables()
+        public ShiftedRow this[int i]
+        {
+            get { return leftShifts[i]; }
+        }
+
+        private void InitTable()
         {
             byte[] line = new Byte[4];
             ushort numberOfMergeableTile;
             ushort numberOfEmptyTile = 0;
             bool isWon;
             uint score;
-            for (int row = 0; row < 65536; row++)
+            for (int row = 0; row < 65536; ++row)
             {
                 numberOfMergeableTile = 0;
                 numberOfEmptyTile = 0;
@@ -82,8 +105,7 @@ namespace Game2048.model
                 result |= (ushort)(line[1] << 4);
                 result |= (ushort)(line[2] << 8);
                 result |= (ushort)(line[3] << 12);
-                leftShifts[row] = new ShiftedRow(numberOfEmptyTile, (ushort)(row ^ result), numberOfMergeableTile,
-                score, isWon);
+                leftShifts[row] = new ShiftedRow(numberOfEmptyTile, (ushort)(row ^ result), numberOfMergeableTile, score, isWon);
             }
         }
     }

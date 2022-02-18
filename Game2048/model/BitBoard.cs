@@ -15,6 +15,8 @@ namespace Game2048.model
         private int _emptyCells;
         private bool _isWin;
 
+        private LookupTable lookupTable = LookupTable.Instance;
+
         public BitBoard()
         {
             this._bitBoard = 0;
@@ -174,12 +176,12 @@ namespace Game2048.model
             for (int index = 0; index < ROW_SIZE; index++)
             {
                 original = GetRowOrColByShiftDirection(direction, index);
-                shifted = LookUpTable.leftShifts[original].Shifted;
-                this._emptyCells -= LookUpTable.leftShifts[original].EmptyCells;
-                this._emptyCells += LookUpTable.leftShifts[shifted ^ original].EmptyCells;
-                this._score -= LookUpTable.leftShifts[original].Score;
-                this._score += LookUpTable.leftShifts[shifted ^ original].Score;
-                this._isWin |= LookUpTable.leftShifts[original].IsWin;
+                shifted = lookupTable[original].Shifted;
+                this._emptyCells -= lookupTable[original].EmptyCells;
+                this._emptyCells += lookupTable[shifted ^ original].EmptyCells;
+                this._score -= lookupTable[original].Score;
+                this._score += lookupTable[shifted ^ original].Score;
+                this._isWin |= lookupTable[original].IsWin;
                 if (shifted != 0)
                 {
                     didShift = true;
@@ -188,7 +190,6 @@ namespace Game2048.model
             }
             return didShift;
         }
-
 
         public override bool Equals(object obj)
         {
