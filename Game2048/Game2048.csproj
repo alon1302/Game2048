@@ -85,19 +85,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\1024.PNG" />
-    <Content Include="resources\128.PNG" />
-    <Content Include="resources\16.PNG" />
-    <Content Include="resources\2.PNG" />
-    <Content Include="resources\2048.PNG" />
-    <Content Include="resources\256.PNG" />
-    <Content Include="resources\32.PNG" />
-    <Content Include="resources\4.PNG" />
-    <Content Include="resources\4096.PNG" />
-    <Content Include="resources\512.PNG" />
-    <Content Include="resources\64.PNG" />
-    <Content Include="resources\8.PNG" />
-    <Content Include="resources\empty_board.PNG" />
+    <Content Include="Resources\1024.PNG" />
+    <Content Include="Resources\128.PNG" />
+    <Content Include="Resources\16.PNG" />
+    <Content Include="Resources\2.PNG" />
+    <Content Include="Resources\2048.PNG" />
+    <Content Include="Resources\256.PNG" />
+    <Content Include="Resources\32.PNG" />
+    <Content Include="Resources\4.PNG" />
+    <Content Include="Resources\4096.PNG" />
+    <Content Include="Resources\512.PNG" />
+    <Content Include="Resources\64.PNG" />
+    <Content Include="Resources\8.PNG" />
+    <Content Include="Resources\board.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

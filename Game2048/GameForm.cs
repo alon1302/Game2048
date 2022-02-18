@@ -26,15 +26,19 @@ namespace Game2048
             switch (e.KeyCode)
             {
                 case Keys.Right:
+                    board.ShiftBoard(Direction.RIGTH);
                     MessageBox.Show("pressed right arrow");
                     break;
                 case Keys.Left:
+                    board.ShiftBoard(Direction.LEFT);
                     MessageBox.Show("pressed left arrow");
                     break;
                 case Keys.Up:
+                    board.ShiftBoard(Direction.UP);
                     MessageBox.Show("pressed up arrow");
                     break;
                 case Keys.Down:
+                    board.ShiftBoard(Direction.DOWN);
                     MessageBox.Show("pressed down arrow");
                     break;
                 default:
@@ -45,6 +49,11 @@ namespace Game2048
         private void GameForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            board.Paint(e.Graphics);
         }
     }
 }

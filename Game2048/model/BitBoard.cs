@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Game2048.model
 {
     class BitBoard
     {
+        private const int WALL_SIZE = 18;
+        private const int CELL_SIZE = 103;
+
         private const int ROW_SIZE = 4;
         private const int BITS_OF_CELL = 4;
         private static Random random = new Random();
@@ -189,6 +193,25 @@ namespace Game2048.model
                 }
             }
             return didShift;
+        }
+
+        public void Paint(Graphics graphics)
+        {
+            Image image;
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                for (int j = 0; j < ROW_SIZE; j++)
+                {
+                    int currentCell = this[i, j];
+                    if (currentCell != 0)
+                    {
+                        image = Image.FromFile("" + this[i, j] + ".PNG");
+                        graphics.DrawImage(image, 
+                            (j+1) * WALL_SIZE + j * CELL_SIZE,
+                            110 + (i+1) * WALL_SIZE + i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+                    }
+                }
+            }
         }
 
         public override bool Equals(object obj)
