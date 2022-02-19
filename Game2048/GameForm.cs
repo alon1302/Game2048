@@ -27,27 +27,24 @@ namespace Game2048
             {
                 case Keys.Right:
                     gameManager.ShiftBoard(Direction.RIGTH);
-                    pictureBox1.Invalidate();
                     //MessageBox.Show("pressed right arrow");
                     break;
                 case Keys.Left:
                     gameManager.ShiftBoard(Direction.LEFT);
-                    pictureBox1.Invalidate();
                     //MessageBox.Show("pressed left arrow");
                     break;
                 case Keys.Up:
                     gameManager.ShiftBoard(Direction.UP);
-                    pictureBox1.Invalidate();
                     //MessageBox.Show("pressed up arrow");
                     break;
                 case Keys.Down:
                     gameManager.ShiftBoard(Direction.DOWN);
-                    pictureBox1.Invalidate();
                     //MessageBox.Show("pressed down arrow");
                     break;
                 default:
                     return;
             }
+            pictureBox1.Invalidate();
         }
 
         private void GameForm_Load(object sender, EventArgs e)

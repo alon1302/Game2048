@@ -47,7 +47,7 @@ namespace Game2048.model
             ushort numberOfEmptyTile = 0;
             bool isWon;
             uint score;
-            for (int row = 0; row < 65536; ++row)
+            for (int row = 0; row < leftShifts.Length; ++row)
             {
                 numberOfMergeableTile = 0;
                 numberOfEmptyTile = 0;

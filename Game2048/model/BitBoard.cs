@@ -48,7 +48,7 @@ namespace Game2048.model
             }
         }
 
-        public Position GetRandomEmptyPosition()
+        private IList<Position> GetAllEmptyPositions()
         {
             List<Position> emptyPositions = new List<Position>();
             for (int row = 0; row < ROW_SIZE; row++)
@@ -61,6 +61,12 @@ namespace Game2048.model
                     }
                 }
             }
+            return emptyPositions;
+        }
+
+        public Position GetRandomEmptyPosition()
+        {
+            IList<Position> emptyPositions = GetAllEmptyPositions();
             int randomIndex = random.Next(0, emptyPositions.Count);
             return emptyPositions[randomIndex];
         }
@@ -180,11 +186,11 @@ namespace Game2048.model
             {
                 original = GetRowOrColByShiftDirection(direction, index);
                 shifted = lookupTable[original].Shifted;
-                this._emptyCells -= lookupTable[original].EmptyCells;
-                this._emptyCells += lookupTable[shifted ^ original].EmptyCells;
-                this._score -= lookupTable[original].Score;
-                this._score += lookupTable[shifted ^ original].Score;
-                this._isWin |= lookupTable[original].IsWin;
+                _emptyCells -= lookupTable[original].EmptyCells;
+                _emptyCells += lookupTable[shifted ^ original].EmptyCells;
+                _score -= lookupTable[original].Score;
+                _score += lookupTable[shifted ^ original].Score;
+                _isWin |= lookupTable[original].IsWin;
                 if (shifted != 0)
                 {
                     didShift = true;

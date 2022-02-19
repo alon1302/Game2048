@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game2048.model
 {
-    class NewCellGenerator
+    class CellCreator
     {
         private static Random rnd = new Random();
 

@@ -13,6 +13,22 @@ namespace Game2048.model
         private const int WALL_SIZE = 16;
         private const int CELL_SIZE = 103;
 
+        private Dictionary<int, Image> valueToImage = new Dictionary<int, Image>()
+        {
+            {1,Properties.Resources._2},
+            {2,Properties.Resources._4},
+            {3,Properties.Resources._8},
+            {4,Properties.Resources._16},
+            {5,Properties.Resources._32},
+            {6,Properties.Resources._64},
+            {7,Properties.Resources._128},
+            {8,Properties.Resources._256},
+            {9,Properties.Resources._512},
+            {10,Properties.Resources._1024},
+            {11,Properties.Resources._2048},
+            {12,Properties.Resources._4096}
+        };
+
         private BitBoard _board;
 
         public GameManager()
@@ -32,7 +48,7 @@ namespace Game2048.model
         public void AddNewCell()
         {
             Position empty = _board.GetRandomEmptyPosition();
-            _board[empty.Row, empty.Col] = NewCellGenerator.getValue();
+            _board[empty.Row, empty.Col] = CellCreator.getValue();
             _board.EmptyCells--;
         }
 
@@ -64,53 +80,7 @@ namespace Game2048.model
 
         public Image getImageFromValue(int value)
         {
-            Image image;
-            switch (value)
-            {
-                case 1:
-                    image = Properties.Resources._2;
-                    break;
-                case 2:
-                    image = Properties.Resources._4;
-                    break;
-                case 3:
-                    image = Properties.Resources._8;
-                    break;
-                case 4:
-                    image = Properties.Resources._16;
-                    break;
-                case 5:
-                    image = Properties.Resources._32;
-                    break;
-                case 6:
-                    image = Properties.Resources._64;
-                    break;
-                case 7:
-                    image = Properties.Resources._128;
-                    break;
-                case 8:
-                    image = Properties.Resources._256;
-                    break;
-                case 9:
-                    image = Properties.Resources._512;
-                    break;
-                case 10:
-                    image = Properties.Resources._1024;
-                    break;
-                case 11:
-                    image = Properties.Resources._2048;
-                    break;
-                case 12:
-                    image = Properties.Resources._4096;
-                    break;
-                //case 13:
-                //    image = Properties.Resources._1024;
-                //    break;
-                default:
-                    image = null;
-                    break;
-            }
-            return image;
+            return valueToImage[value];
         }
 
     }

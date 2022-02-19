@@ -56,7 +56,7 @@
     <Compile Include="model\Direction.cs" />
     <Compile Include="model\GameManager.cs" />
     <Compile Include="model\LookupTable.cs" />
-    <Compile Include="model\NewCellGenerator.cs" />
+    <Compile Include="model\CellCreator.cs" />
     <Compile Include="model\Position.cs" />
     <Compile Include="model\ShiftedRow.cs" />
     <Compile Include="Program.cs" />
