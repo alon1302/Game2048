@@ -1,4 +1,5 @@
 ﻿using Game2048.model;
+using Game2048.view;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,7 +55,7 @@ namespace Game2048
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            gameManager.PaintBoard(e.Graphics);
+            GraphicsManager.PaintBoard(e.Graphics, gameManager.Board);
         }
     }
 }

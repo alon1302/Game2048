@@ -7,7 +7,6 @@ namespace Game2048.model
     class BitBoard
     {
 
-
         private const int ROW_SIZE = 4;
         private const int BITS_OF_CELL = 4;
         private static Random random = new Random();
@@ -71,7 +70,7 @@ namespace Game2048.model
             return emptyPositions[randomIndex];
         }
 
-        public ushort GetColToShiftDown(int col)
+        private ushort GetColToShiftDown(int col)
         {
             ulong first = (this._bitBoard >> (col + 12) * BITS_OF_CELL) & 0xfL;
             ulong second = (this._bitBoard >> (col + 7) * BITS_OF_CELL) & 0xf0UL;
@@ -81,7 +80,7 @@ namespace Game2048.model
             return (ushort)combine;
         }
 
-        public void SetShiftedDownCol(int col, ushort shiftedCol)
+        private void SetShiftedDownCol(int col, ushort shiftedCol)
         {
             this._bitBoard =
                     (((_bitBoard ^ (((ulong)(shiftedCol >> 12) & 0xfUL) << (col * BITS_OF_CELL)))
@@ -90,7 +89,7 @@ namespace Game2048.model
                     ^ (((ulong)(shiftedCol >> 0) & 0xfUl) << (col + 12) * BITS_OF_CELL);
         }
 
-        public ushort GetColToShiftUp(int col)
+        private ushort GetColToShiftUp(int col)
         {
             ulong first = (this._bitBoard >> col * BITS_OF_CELL) & 0xfUL;
             ulong second = (this._bitBoard >> (col + 3) * BITS_OF_CELL) & 0xf0UL;
@@ -100,7 +99,7 @@ namespace Game2048.model
             return (ushort)combine;
         }
 
-        public void SetShiftedUpCol(int col, ushort shiftedCol)
+        private void SetShiftedUpCol(int col, ushort shiftedCol)
         {
             this._bitBoard =
                 (((_bitBoard ^ (((ulong)(shiftedCol >> 0) & 0xfUL) << (col * BITS_OF_CELL)))
@@ -109,7 +108,7 @@ namespace Game2048.model
                 ^ (((ulong)(shiftedCol >> 12) & 0xfUl) << (col + 12) * BITS_OF_CELL);
         }
 
-        public ushort GetRowToShiftRight(int row)
+        private ushort GetRowToShiftRight(int row)
         {
             ulong first = this._bitBoard >> ((3 + (row * ROW_SIZE)) * BITS_OF_CELL) & 0xfL;
             ulong second = this._bitBoard >> ((1 + (row * ROW_SIZE)) * BITS_OF_CELL) & 0xf0UL;
@@ -119,7 +118,7 @@ namespace Game2048.model
             return (ushort)combine;
         }
 
-        public void SetShiftedRightRow(int row, ushort shiftedRow)
+        private void SetShiftedRightRow(int row, ushort shiftedRow)
         {
             this._bitBoard = 
                 (((_bitBoard ^
@@ -129,17 +128,17 @@ namespace Game2048.model
                 ^ (((ulong)(shiftedRow >> 0) & 0xfUl) << ((3 + row * ROW_SIZE) * BITS_OF_CELL)));
         }
 
-        public ushort GetRowToShiftLeft(int row)
+        private ushort GetRowToShiftLeft(int row)
         {
             return (ushort)((this._bitBoard >> ROW_SIZE * BITS_OF_CELL * row) & 0xffffUL);
         }
 
-        public void SetShiftedLeftRow(int row, ushort shiftedRow)
+        private void SetShiftedLeftRow(int row, ushort shiftedRow)
         {
             this._bitBoard = _bitBoard ^ ((ulong)shiftedRow << row * ROW_SIZE * BITS_OF_CELL);
         }
 
-        public ushort GetRowOrColByShiftDirection(Direction direction, int index)
+        private ushort GetRowOrColByShiftDirection(Direction direction, int index)
         {
             switch (direction)
             {
@@ -156,7 +155,7 @@ namespace Game2048.model
             }
         }
 
-        public void SetShitedRowOrColByDirection(Direction direction, int index, ushort shifted)
+        private void SetShitedRowOrColByDirection(Direction direction, int index, ushort shifted)
         {
             switch (direction)
             {
@@ -205,8 +204,6 @@ namespace Game2048.model
             get => _emptyCells;
             set => _emptyCells = value;
         }
-
-        
 
         public override bool Equals(object obj)
         {
