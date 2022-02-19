@@ -21,6 +21,9 @@ namespace Game2048
             base.Dispose(disposing);
         }
 
+
+
+        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
@@ -36,6 +39,7 @@ namespace Game2048
             this.pictureBox1.Size = new System.Drawing.Size(502, 502);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // GameForm
             // 
@@ -48,9 +52,6 @@ namespace Game2048
             this.ResumeLayout(false);
 
         }
-
-        #region Windows Form Designer generated code
-
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;

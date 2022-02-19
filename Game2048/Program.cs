@@ -19,7 +19,7 @@ namespace Game2048
             ////bitBoard[3, 3] = 9;
             //bitBoard[0, 0] = 12;
 
-            LookupTable lookupTable = LookupTable.Instance;
+            //LookupTable lookupTable = LookupTable.Instance;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

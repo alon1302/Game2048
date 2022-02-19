@@ -54,7 +54,9 @@
     </Compile>
     <Compile Include="model\BitBoard.cs" />
     <Compile Include="model\Direction.cs" />
+    <Compile Include="model\GameManager.cs" />
     <Compile Include="model\LookupTable.cs" />
+    <Compile Include="model\NewCellGenerator.cs" />
     <Compile Include="model\Position.cs" />
     <Compile Include="model\ShiftedRow.cs" />
     <Compile Include="Program.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -85,19 +88,43 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\1024.PNG" />
-    <Content Include="Resources\128.PNG" />
-    <Content Include="Resources\16.PNG" />
-    <Content Include="Resources\2.PNG" />
-    <Content Include="Resources\2048.PNG" />
-    <Content Include="Resources\256.PNG" />
-    <Content Include="Resources\32.PNG" />
-    <Content Include="Resources\4.PNG" />
-    <Content Include="Resources\4096.PNG" />
-    <Content Include="Resources\512.PNG" />
-    <Content Include="Resources\64.PNG" />
-    <Content Include="Resources\8.PNG" />
-    <Content Include="Resources\board.PNG" />
+    <None Include="Resources\2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\64.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\128.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\256.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\512.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1024.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2048.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4096.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\board.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
