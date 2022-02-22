@@ -46,6 +46,7 @@ namespace Game2048
                     return;
             }
             pictureBox1.Invalidate();
+            label1.Text = gameManager.BoardScore.ToString();
         }
 
         private void GameForm_Load(object sender, EventArgs e)

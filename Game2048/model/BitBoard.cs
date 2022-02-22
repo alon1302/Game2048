@@ -205,6 +205,11 @@ namespace Game2048.model
             set => _emptyCells = value;
         }
 
+        public uint Score
+        {
+            get => _score;
+        }
+        
         public override bool Equals(object obj)
         {
             return obj is BitBoard board &&

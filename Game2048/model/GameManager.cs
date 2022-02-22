@@ -35,16 +35,22 @@ namespace Game2048.model
 
         public void ShiftBoard(Direction direction)
         {
-            _board.ShiftBoard(direction);
-            AddNewCell();
+            bool isShifted = _board.ShiftBoard(direction);
+            if (isShifted)
+            {
+                AddNewCell();
+            }
+            
+        }
+
+        public uint BoardScore
+        {
+            get => _board.Score;
         }
 
         public BitBoard Board
         {
             get => _board;
         }
-
-
-
     }
 }
