@@ -10,7 +10,7 @@ namespace Game2048.model
     {
         private ushort _shifted;
         private int _emptyCells;
-        private int _merges;
+        private int _mergeablesCells;
         private uint _score;
         private bool _isWin;
 
@@ -18,7 +18,7 @@ namespace Game2048.model
         {
             _emptyCells = emptyCells;
             _shifted = shifted;
-            _merges = merges;
+            _mergeablesCells = merges;
             _score = score;
             _isWin = isWin;
         }
@@ -35,10 +35,10 @@ namespace Game2048.model
             set { _emptyCells = value; }
         }
 
-        public int Merges
+        public int MergeableCells
         {
-            get { return _merges; }
-            set { _merges = value; }
+            get { return _mergeablesCells; }
+            set { _mergeablesCells = value; }
         }
 
         public uint Score

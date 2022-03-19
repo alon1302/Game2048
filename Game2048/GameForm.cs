@@ -20,6 +20,7 @@ namespace Game2048
         {
             gameManager = new GameManager();
             InitializeComponent();
+            MakeLabelTransparent();
         }
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
@@ -47,16 +48,31 @@ namespace Game2048
             }
             pictureBox1.Invalidate();
             label1.Text = gameManager.BoardScore.ToString();
+            if (gameManager.IsGameOver())
+            {
+                MessageBox.Show("game over");
+            }
         }
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             GraphicsManager.PaintBoard(e.Graphics, gameManager.Board);
         }
+
+        private void MakeLabelTransparent()
+        {
+            //label1.Location = pictureBox1.PointToClient(PointToScreen(label1.Location));
+            //label1.Parent = pictureBox1;
+            //Point pos = this.PointToScreen(label1.Location);
+            //pos = pictureBox1.PointToClient(pos);
+            //label1.Parent = pictureBox1;
+            //label1.Location = pos;
+            //label1.BackColor = Color.Transparent;
+        }
+
     }
 }

@@ -40,7 +40,7 @@ namespace Game2048.model
             {
                 AddNewCell();
             }
-            
+
         }
 
         public uint BoardScore
@@ -52,5 +52,10 @@ namespace Game2048.model
         {
             get => _board;
         }
-    }
+
+        public bool IsGameOver()
+        {
+            return Board.IsLostBoard();    
+        }
+}
 }
