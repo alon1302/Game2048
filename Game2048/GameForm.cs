@@ -65,14 +65,11 @@ namespace Game2048
 
         private void MakeLabelTransparent()
         {
-            //label1.Location = pictureBox1.PointToClient(PointToScreen(label1.Location));
-            //label1.Parent = pictureBox1;
             //Point pos = this.PointToScreen(label1.Location);
             //pos = pictureBox1.PointToClient(pos);
             //label1.Parent = pictureBox1;
             //label1.Location = pos;
             //label1.BackColor = Color.Transparent;
         }
-
     }
 }

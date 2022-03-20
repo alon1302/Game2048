@@ -56,11 +56,12 @@ namespace Game2048
             // 
             // label1
             // 
+            this.label1.Parent = pictureBox2;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(113, 53);
+            this.label1.Location = new System.Drawing.Point(pictureBox2.Location.X + pictureBox2.Size.Width /2 - 10, pictureBox2.Location.Y + pictureBox2.Size.Height / 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 32);
+            this.label1.Size = new System.Drawing.Size(20, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "0";
             // 
