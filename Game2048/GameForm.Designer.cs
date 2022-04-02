@@ -30,6 +30,7 @@ namespace Game2048
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -58,21 +59,33 @@ namespace Game2048
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 194);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(502, 502);
+            this.pictureBox1.Size = new System.Drawing.Size(498, 498);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Lime;
+            this.button1.Location = new System.Drawing.Point(388, 102);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 75);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "restart";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GameForm
             // 
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(496, 691);
+            this.ClientSize = new System.Drawing.Size(496, 692);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "GameForm";
             this.Load += new System.EventHandler(this.GameForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameForm_KeyDown);
+            //this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmGameForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -83,6 +96,7 @@ namespace Game2048
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

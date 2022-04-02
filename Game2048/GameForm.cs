@@ -23,35 +23,32 @@ namespace Game2048
             MakeLabelTransparent();
         }
 
-        private void GameForm_KeyDown(object sender, KeyEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (e.KeyCode)
+            switch (keyData)
             {
                 case Keys.Right:
                     gameManager.ShiftBoard(Direction.RIGTH);
-                    //MessageBox.Show("pressed right arrow");
                     break;
                 case Keys.Left:
                     gameManager.ShiftBoard(Direction.LEFT);
-                    //MessageBox.Show("pressed left arrow");
                     break;
                 case Keys.Up:
                     gameManager.ShiftBoard(Direction.UP);
-                    //MessageBox.Show("pressed up arrow");
                     break;
                 case Keys.Down:
                     gameManager.ShiftBoard(Direction.DOWN);
-                    //MessageBox.Show("pressed down arrow");
                     break;
                 default:
-                    return;
+                    return base.ProcessCmdKey(ref msg, keyData);
+
             }
-            pictureBox1.Invalidate();
-            label1.Text = gameManager.BoardScore.ToString();
+            UpdateUI();
             if (gameManager.IsGameOver())
             {
                 MessageBox.Show("game over");
             }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void GameForm_Load(object sender, EventArgs e)
@@ -70,6 +67,18 @@ namespace Game2048
             //label1.Parent = pictureBox1;
             //label1.Location = pos;
             //label1.BackColor = Color.Transparent;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gameManager = new GameManager();
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            pictureBox1.Invalidate();
+            label1.Text = gameManager.BoardScore.ToString();
         }
     }
 }
