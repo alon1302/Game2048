@@ -40,7 +40,6 @@ namespace Game2048.model
             {
                 AddNewCell();
             }
-
         }
 
         public uint BoardScore

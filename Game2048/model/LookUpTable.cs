@@ -40,45 +40,70 @@ namespace Game2048.model
             get { return leftShifts[i]; }
         }
 
+        private ushort CalculateEmptyCells(byte[] line)
+        {
+            ushort emptyCells = 0;
+            for (int i = 0; i < ROW_SIZE; i++)
+            {
+                if (line[i] == 0)
+                {
+                    emptyCells++;
+                }
+            }
+            return emptyCells;
+        }
+
+        private uint CalculateScore(byte[] line)
+        {
+            uint score = 0;
+            for (int i = 0; i < 4; ++i)
+            {
+                int currValue = line[i];
+                if (currValue >= 2)
+                {
+                    score += (uint)((currValue - 1) * (1 << currValue));
+                }
+            }
+            return score;
+        }
+
+        private ushort ArrangeNewLine(byte[] newLine)
+        {
+            return (ushort)((newLine[0] << 0) |
+            (newLine[1] << 4) |
+            (newLine[2] << 8) |
+            (newLine[3] << 12));
+        }
+
+        private byte[] ArrangeOriginalLine(int originalLine)
+        {
+            byte[] line = new byte[4];
+            line[0] = (byte)((originalLine >> 0) & 0xf);
+            line[1] = (byte)((originalLine >> 4) & 0xf);
+            line[2] = (byte)((originalLine >> 8) & 0xf);
+            line[3] = (byte)((originalLine >> 12) & 0xf);
+            return line;
+        }
+
         private void InitTable()
         {
-            byte[] line = new Byte[4];
+            byte[] line;
             ushort numberOfMergeableTile;
-            ushort numberOfEmptyTile = 0;
+            ushort emptyCells;
             bool isWon;
             uint score;
             for (int row = 0; row < leftShifts.Length; ++row)
             {
-                numberOfMergeableTile = 0;
-                numberOfEmptyTile = 0;
+                numberOfMergeableTile = 0;                
                 isWon = false;
-                line[0] = (byte)((row >> 0) & 0xf);
-                line[1] = (byte)((row >> 4) & 0xf);
-                line[2] = (byte)((row >> 8) & 0xf);
-                line[3] = (byte)((row >> 12) & 0xf);
-                for (int i = 0; i < ROW_SIZE; i++)
-                {
-                    if (line[i] == 0)
-                    {
-                        numberOfEmptyTile++;
-                    }
-                }
-                score = 0;
-                for (int i = 0; i < 4; ++i)
-                {
-                    int rank = line[i];
-                    if (rank >= 2)
-                    {
-                        score += (uint)((rank - 1) * (1 << rank));
-                    }
-                }
+                line = ArrangeOriginalLine(row);
+                emptyCells = CalculateEmptyCells(line);
+                score = CalculateScore(line);
                 for (int i = 0; i < 3; ++i)
                 {
                     int j;
                     for (j = i + 1; j < 4; ++j)
-                    {
                         if (line[j] != 0) break;
-                    }
                     if (j == 4) break; // no more tiles to the right
                     if (line[i] == 0)
                     {
@@ -88,9 +113,8 @@ namespace Game2048.model
                     }
                     else if (line[i] == line[j])
                     {
-                        if (line[i] != 0xf)
+                        if (line[i] != 0xf) //marge two tiles
                         {
-                            //marge two tiles
                             numberOfMergeableTile++;
                             line[i]++;
                         }
@@ -101,11 +125,8 @@ namespace Game2048.model
                         line[j] = 0;
                     }
                 }
-                ushort result = (ushort)(line[0] << 0);
-                result |= (ushort)(line[1] << 4);
-                result |= (ushort)(line[2] << 8);
-                result |= (ushort)(line[3] << 12);
-                leftShifts[row] = new ShiftedRow(numberOfEmptyTile, (ushort)(row ^ result), numberOfMergeableTile, score, isWon);
+                ushort result = ArrangeNewLine(line);
+                leftShifts[row] = new ShiftedRow(emptyCells, (ushort)(row ^ result), numberOfMergeableTile, score, isWon); // save line after shift left
             }
         }
     }

@@ -6,7 +6,6 @@ namespace Game2048.model
 {
     class BitBoard
     {
-
         public const int ROW_SIZE = 4;
         private const int BITS_OF_CELL = 4;
         private static Random random = new Random();
@@ -202,23 +201,13 @@ namespace Game2048.model
         public bool IsLostBoard()
         {
             if (_emptyCells != 0)
-            {
                 return false;
-            }
             for (int row = 0; row < ROW_SIZE; row++)
-            {
                 if (lookupTable[GetRowToShiftLeft(row)].MergeableCells != 0)
-                {
                     return false;
-                }
-            }
             for (int col = 0; col < ROW_SIZE; col++)
-            {
                 if (lookupTable[GetColToShiftDown(col)].MergeableCells != 0)
-                {
                     return false;
-                }
-            }
             return true;
         }
 
