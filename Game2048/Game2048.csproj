@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\AIManager.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,12 +54,14 @@
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\BitBoard.cs" />
+    <Compile Include="model\BoardEvaluation.cs" />
     <Compile Include="model\Direction.cs" />
     <Compile Include="model\GameManager.cs" />
     <Compile Include="model\LookupTable.cs" />
     <Compile Include="model\CellCreator.cs" />
     <Compile Include="model\Position.cs" />
     <Compile Include="model\ShiftedRow.cs" />
+    <Compile Include="model\Transposition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\GraphicsManager.cs" />
@@ -132,6 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\score_board.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

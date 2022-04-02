@@ -28,7 +28,7 @@ namespace Game2048
             switch (keyData)
             {
                 case Keys.Right:
-                    gameManager.ShiftBoard(Direction.RIGTH);
+                    gameManager.ShiftBoard(Direction.RIGHT);
                     break;
                 case Keys.Left:
                     gameManager.ShiftBoard(Direction.LEFT);

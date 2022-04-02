@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Game2048.model
 {
-    class BitBoard
+    class BitBoard : ICloneable
     {
         public const int ROW_SIZE = 4;
         private const int BITS_OF_CELL = 4;
@@ -14,7 +14,7 @@ namespace Game2048.model
 
         private uint _score;
         private int _emptyCells;
-        private bool _isWin;
+        private bool _isWon;
 
         private LookupTable lookupTable = LookupTable.Instance;
 
@@ -22,7 +22,7 @@ namespace Game2048.model
         {
             this._bitBoard = 0;
             this._score = 0;
-            this._isWin = false;
+            this._isWon = false;
             this._emptyCells = ROW_SIZE * ROW_SIZE;
         }
 
@@ -119,7 +119,7 @@ namespace Game2048.model
 
         private void SetShiftedRightRow(int row, ushort shiftedRow)
         {
-            this._bitBoard = 
+            this._bitBoard =
                 (((_bitBoard ^
                 (((ulong)(shiftedRow >> 12) & 0xfUL) << row * ROW_SIZE * BITS_OF_CELL))
                 ^ (((ulong)(shiftedRow >> 8) & 0xfUl) << ((1 + row * ROW_SIZE) * BITS_OF_CELL)))
@@ -143,7 +143,7 @@ namespace Game2048.model
             {
                 case Direction.UP:
                     return GetColToShiftUp(index);
-                case Direction.RIGTH:
+                case Direction.RIGHT:
                     return GetRowToShiftRight(index);
                 case Direction.DOWN:
                     return GetColToShiftDown(index);
@@ -161,7 +161,7 @@ namespace Game2048.model
                 case Direction.UP:
                     SetShiftedUpCol(index, shifted);
                     break;
-                case Direction.RIGTH:
+                case Direction.RIGHT:
                     SetShiftedRightRow(index, shifted);
                     break;
                 case Direction.DOWN:
@@ -188,7 +188,7 @@ namespace Game2048.model
                 _emptyCells += lookupTable[shifted ^ original].EmptyCells;
                 _score -= lookupTable[original].Score;
                 _score += lookupTable[shifted ^ original].Score;
-                _isWin |= lookupTable[original].IsWin;
+                _isWon |= lookupTable[original].IsWin;
                 if (shifted != 0)
                 {
                     didShift = true;
@@ -196,6 +196,19 @@ namespace Game2048.model
                 }
             }
             return didShift;
+        }
+
+        public int MergeableCells
+        {
+            get 
+            {
+                int mergeableCells = 0;
+                for (int row = 0; row < BitBoard.ROW_SIZE; row++)
+                    mergeableCells += lookupTable[GetRowToShiftLeft(row)].MergeableCells;
+                for (int col = 0; col < BitBoard.ROW_SIZE; col++)
+                    mergeableCells += lookupTable[GetColToShiftDown(col)].MergeableCells;
+                return mergeableCells;
+            }
         }
 
         public bool IsLostBoard()
@@ -211,6 +224,11 @@ namespace Game2048.model
             return true;
         }
 
+        public ulong BoardKey
+        {
+            get => _bitBoard;
+        }
+
         public int EmptyCells
         {
             get => _emptyCells;
@@ -221,11 +239,25 @@ namespace Game2048.model
         {
             get => _score;
         }
-        
+        public bool IsWon 
+        {
+            get => _isWon;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is BitBoard board &&
                    _bitBoard == board._bitBoard;
+        }
+
+        public object Clone()
+        {
+            BitBoard clone = new BitBoard();
+            clone._bitBoard = _bitBoard;
+            clone._score = _score;
+            clone._emptyCells = _emptyCells;
+            clone._isWon = _isWon;
+            return clone;
         }
     }
 }

@@ -8,8 +8,9 @@ namespace Game2048.model
 {
     public enum Direction
     {
+        NONE,
         UP,
-        RIGTH,
+        RIGHT,
         DOWN,
         LEFT
     }
