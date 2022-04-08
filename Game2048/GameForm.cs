@@ -13,40 +13,69 @@ using System.Windows.Forms;
 namespace Game2048
 {
 
+    public enum GameMode
+    {
+        NORMAL,
+        AI
+    }
+
     public partial class GameForm : Form
     {
         private GameManager gameManager;
-        public GameForm()
+        private AIManager AIManager;
+        public GameForm(GameMode mode)
         {
-            gameManager = new GameManager();
+            gameManager = new GameManager();          
             InitializeComponent();
-            MakeLabelTransparent();
+            if (mode == GameMode.AI)
+            {
+                AIManager = new AIManager();
+                runAIGame();
+            }
+        }
+
+        private void runAIGame()
+        {
+            bool game = true;
+            Direction currentMove;
+            do
+            {
+                currentMove = AIManager.GetBestMove(gameManager.Board);
+                if (currentMove == Direction.NONE)
+                {
+                    game = false;
+                }
+                else
+                {
+                    gameManager.ShiftBoard(currentMove);
+                    UpdateUI();
+                }
+            } while (game);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (keyData)
+            if (AIManager == null)
             {
-                case Keys.Right:
-                    gameManager.ShiftBoard(Direction.RIGHT);
-                    break;
-                case Keys.Left:
-                    gameManager.ShiftBoard(Direction.LEFT);
-                    break;
-                case Keys.Up:
-                    gameManager.ShiftBoard(Direction.UP);
-                    break;
-                case Keys.Down:
-                    gameManager.ShiftBoard(Direction.DOWN);
-                    break;
-                default:
-                    return base.ProcessCmdKey(ref msg, keyData);
+                switch (keyData)
+                {
+                    case Keys.Right:
+                        gameManager.ShiftBoard(Direction.RIGHT);
+                        break;
+                    case Keys.Left:
+                        gameManager.ShiftBoard(Direction.LEFT);
+                        break;
+                    case Keys.Up:
+                        gameManager.ShiftBoard(Direction.UP);
+                        break;
+                    case Keys.Down:
+                        gameManager.ShiftBoard(Direction.DOWN);
+                        break;
+                    default:
+                        return base.ProcessCmdKey(ref msg, keyData);
 
-            }
-            UpdateUI();
-            if (gameManager.IsGameOver())
-            {
-                MessageBox.Show("game over");
+                }
+                UpdateUI();
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -60,15 +89,6 @@ namespace Game2048
             GraphicsManager.PaintBoard(e.Graphics, gameManager.Board);
         }
 
-        private void MakeLabelTransparent()
-        {
-            //Point pos = this.PointToScreen(label1.Location);
-            //pos = pictureBox1.PointToClient(pos);
-            //label1.Parent = pictureBox1;
-            //label1.Location = pos;
-            //label1.BackColor = Color.Transparent;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             gameManager = new GameManager();
@@ -79,6 +99,10 @@ namespace Game2048
         {
             pictureBox1.Invalidate();
             label1.Text = gameManager.BoardScore.ToString();
+            if (gameManager.IsGameOver())
+            {
+                MessageBox.Show("game over"); // TODO: end game screen
+            }
         }
     }
 }

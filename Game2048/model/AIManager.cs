@@ -32,6 +32,7 @@ namespace Game2048.model
             Direction bestMove = Direction.NONE;
             double bestScore = double.MinValue;
             double currentScore;
+            transpositionTable = new Dictionary<ulong, Transposition>(transpositionCapacity);
             foreach (Direction move in directions)
             {
                 BitBoard cloned = (BitBoard)board.Clone();
