@@ -68,13 +68,10 @@
 
         public static double Evaluate(BitBoard board, AIStrategy strategy)
         {
-            double score = 0;
-            score += EvaluatePositionByStrategy(board, strategy);
-            score += EvaluateEmptyCells(board);
-            score += EvaluateMergeableCells(board);
-            score += EvaluateWon(board);
-            return score;
+            return EvaluatePositionByStrategy(board, strategy)
+             + EvaluateEmptyCells(board)
+             + EvaluateMergeableCells(board)
+             + EvaluateWon(board);
         }
-
     }
 }

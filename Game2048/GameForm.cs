@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Game2048
 {
@@ -21,20 +22,22 @@ namespace Game2048
 
     public partial class GameForm : Form
     {
+
+        private const int AI_DEPTH = 3;
+
         private GameManager gameManager;
-        private AIManager AIManager;
+        private AIManager AIManager; 
         public GameForm(GameMode mode)
         {
             gameManager = new GameManager();          
             InitializeComponent();
             if (mode == GameMode.AI)
             {
-                AIManager = new AIManager();
-                runAIGame();
+                AIManager = new AIManager(AI_DEPTH);
             }
         }
 
-        private void runAIGame()
+        public void runAIGame()
         {
             bool game = true;
             Direction currentMove;
@@ -49,8 +52,10 @@ namespace Game2048
                 {
                     gameManager.ShiftBoard(currentMove);
                     UpdateUI();
+                    Thread.Sleep(500);
                 }
             } while (game);
+            Console.WriteLine("FINISH");
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -77,11 +82,27 @@ namespace Game2048
                 }
                 UpdateUI();
             }
+            //else
+            //{
+            //    if (keyData == Keys.Enter)
+            //    {
+            //        runAIGame();
+            //    }
+            //}
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void GameForm_Load(object sender, EventArgs e)
         {
+            //if (AIManager != null)
+            //{
+            //    //runAIGame();
+            //}
+        }
+
+        private void GameForm_Shown(object sender, EventArgs e)
+        {
+            runAIGame();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

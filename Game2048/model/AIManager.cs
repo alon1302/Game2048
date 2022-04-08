@@ -13,7 +13,7 @@ namespace Game2048.model
     }
     class AIManager
     {
-        private const int SearchDepth = 4;
+        private int _depth = 4;
 
         private Direction[] directions = { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT };
 
@@ -23,8 +23,9 @@ namespace Game2048.model
 
         private AIStrategy strategy;
 
-        public AIManager()
-        { 
+        public AIManager(int depth)
+        {
+            this._depth = depth;
         }
 
         public Direction GetBestMove(BitBoard board)
@@ -107,9 +108,9 @@ namespace Game2048.model
         {
             if (board.EmptyCells > 4)
             {
-                return SearchDepth;
+                return _depth;
             }
-            return SearchDepth + 1;
+            return _depth + 1;
         }
     }
 }
