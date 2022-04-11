@@ -41,7 +41,7 @@ namespace Game2048
         {
             bool game = true;
             Direction currentMove;
-            do
+            while (game)
             {
                 currentMove = AIManager.GetBestMove(gameManager.Board);
                 if (currentMove == Direction.NONE)
@@ -54,7 +54,7 @@ namespace Game2048
                     UpdateUI();
                     Thread.Sleep(500);
                 }
-            } while (game);
+            }
             Console.WriteLine("FINISH");
         }
 
@@ -82,13 +82,18 @@ namespace Game2048
                 }
                 UpdateUI();
             }
-            //else
-            //{
-            //    if (keyData == Keys.Enter)
-            //    {
-            //        runAIGame();
-            //    }
-            //}
+            else
+            {
+                if (keyData == Keys.Enter)
+                {
+                    bool firstClick = true;
+                    if (firstClick)
+                    {
+                        runAIGame();
+                        firstClick = false;
+                    }
+                }
+            }  
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -98,11 +103,6 @@ namespace Game2048
             //{
             //    //runAIGame();
             //}
-        }
-
-        private void GameForm_Shown(object sender, EventArgs e)
-        {
-            runAIGame();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -118,7 +118,7 @@ namespace Game2048
 
         private void UpdateUI()
         {
-            pictureBox1.Invalidate();
+            pictureBox1.Refresh();
             label1.Text = gameManager.BoardScore.ToString();
             if (gameManager.IsGameOver())
             {
