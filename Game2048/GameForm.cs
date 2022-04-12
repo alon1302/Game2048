@@ -22,18 +22,19 @@ namespace Game2048
 
     public partial class GameForm : Form
     {
-
-        private const int AI_DEPTH = 3;
+        private const int AI_DEPTH = 4;
 
         private GameManager gameManager;
-        private AIManager AIManager; 
+        private AIManager AIManager;
+
+        bool firstClick = true;
         public GameForm(GameMode mode)
         {
             gameManager = new GameManager();          
             InitializeComponent();
             if (mode == GameMode.AI)
             {
-                AIManager = new AIManager(AI_DEPTH);
+                AIManager = new AIManager(AI_DEPTH);                
             }
         }
 
@@ -52,7 +53,7 @@ namespace Game2048
                 {
                     gameManager.ShiftBoard(currentMove);
                     UpdateUI();
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
                 }
             }
             Console.WriteLine("FINISH");
@@ -85,8 +86,7 @@ namespace Game2048
             else
             {
                 if (keyData == Keys.Enter)
-                {
-                    bool firstClick = true;
+                {           
                     if (firstClick)
                     {
                         runAIGame();
@@ -99,15 +99,12 @@ namespace Game2048
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            //if (AIManager != null)
-            //{
-            //    //runAIGame();
-            //}
+
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            GraphicsManager.PaintBoard(e.Graphics, gameManager.Board);
+            GraphicsManager.PaintBoard(e.Graphics, gameManager.Board); 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -120,6 +117,7 @@ namespace Game2048
         {
             pictureBox1.Refresh();
             label1.Text = gameManager.BoardScore.ToString();
+            label1.Refresh();
             if (gameManager.IsGameOver())
             {
                 MessageBox.Show("game over"); // TODO: end game screen

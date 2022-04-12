@@ -14,13 +14,9 @@ namespace Game2048.model
     class AIManager
     {
         private int _depth = 4;
-
         private Direction[] directions = { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT };
-
         private Dictionary<ulong, Transposition> transpositionTable;
-
         private int transpositionCapacity = 2000000;
-
         private AIStrategy strategy;
 
         public AIManager(int depth)
@@ -54,13 +50,9 @@ namespace Game2048.model
         {
             Transposition value;
             if (transpositionTable.TryGetValue(board.BoardKey, out value) && value.Depth <= currentDepth)
-            {
                 return value.Score;
-            }
             if (currentDepth == searchDepth || board.IsWon)
-            {
                 return BoardEvaluation.Evaluate(board, strategy);
-            }
             double totalScore = 1;
             double score2, score4;
             board.EmptyCells--; // try spot 2/4 in every empty cell on the board
@@ -107,9 +99,7 @@ namespace Game2048.model
         private int adaptSearchDepth(BitBoard board)
         {
             if (board.EmptyCells > 4)
-            {
                 return _depth;
-            }
             return _depth + 1;
         }
     }

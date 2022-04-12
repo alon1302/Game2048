@@ -15,16 +15,9 @@ namespace Game2048
         [STAThread]
         static void Main()
         {
-            //BitBoard bitBoard = new BitBoard();
-            ////bitBoard[3, 3] = 9;
-            //bitBoard[0, 0] = 12;
-
-            //LookupTable lookupTable = LookupTable.Instance;
-
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            GameForm gameForm = new GameForm(GameMode.AI);
-            Application.Run(gameForm);
+            Application.SetCompatibleTextRenderingDefault(false);      
+            Application.Run(new OpenForm());
         }
     }
 }

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenForm.Designer.cs">
+      <DependentUpon>OpenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\AIManager.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
@@ -67,6 +73,9 @@
     <Compile Include="view\GraphicsManager.cs" />
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenForm.resx">
+      <DependentUpon>OpenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
