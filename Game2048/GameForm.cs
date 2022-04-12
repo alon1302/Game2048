@@ -34,7 +34,7 @@ namespace Game2048
             InitializeComponent();
             if (mode == GameMode.AI)
             {
-                AIManager = new AIManager(AI_DEPTH);                
+                AIManager = new AIManager(AI_DEPTH, AIStrategy.CORNER);                
             }
         }
 

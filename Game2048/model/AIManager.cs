@@ -17,11 +17,12 @@ namespace Game2048.model
         private Direction[] directions = { Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT };
         private Dictionary<ulong, Transposition> transpositionTable;
         private int transpositionCapacity = 2000000;
-        private AIStrategy strategy;
+        private AIStrategy _strategy;
 
-        public AIManager(int depth)
+        public AIManager(int depth, AIStrategy strategy)
         {
-            this._depth = depth;
+            _depth = depth;
+            _strategy = strategy;
         }
 
         public Direction GetBestMove(BitBoard board)
@@ -52,7 +53,7 @@ namespace Game2048.model
             if (transpositionTable.TryGetValue(board.BoardKey, out value) && value.Depth <= currentDepth)
                 return value.Score;
             if (currentDepth == searchDepth || board.IsWon)
-                return BoardEvaluation.Evaluate(board, strategy);
+                return BoardEvaluation.Evaluate(board, _strategy);
             double totalScore = 1;
             double score2, score4;
             board.EmptyCells--; // try spot 2/4 in every empty cell on the board
