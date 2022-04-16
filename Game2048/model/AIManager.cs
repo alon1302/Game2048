@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game2048.model
 {
-    enum AIStrategy
+    public enum AIStrategy
     {
         SNAKE,
         CORNER

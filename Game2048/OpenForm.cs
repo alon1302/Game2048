@@ -44,16 +44,16 @@ namespace Game2048
 
         private void label3_Click(object sender, EventArgs e)
         {
-            GameForm gameForm = new GameForm(GameMode.NORMAL);
+            GameForm gameForm = new GameForm();
             this.Hide();
             gameForm.Show();
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-            GameForm gameForm = new GameForm(GameMode.AI);
+            AISettingsForm settingsForm = new AISettingsForm();
             this.Hide();
-            gameForm.Show();
+            settingsForm.Show();
         }
 
         private void AddEventHandlers()

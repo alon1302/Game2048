@@ -22,20 +22,23 @@ namespace Game2048
 
     public partial class GameForm : Form
     {
-        private const int AI_DEPTH = 4;
+        private const int AI_DEPTH = 3;
 
         private GameManager gameManager;
         private AIManager AIManager;
 
         bool firstClick = true;
-        public GameForm(GameMode mode)
+        public GameForm(int depth, AIStrategy strategy)
         {
-            gameManager = new GameManager();          
+            gameManager = new GameManager();
             InitializeComponent();
-            if (mode == GameMode.AI)
-            {
-                AIManager = new AIManager(AI_DEPTH, AIStrategy.CORNER);                
-            }
+            AIManager = new AIManager(depth, strategy);                
+        }
+
+        public GameForm()
+        {
+            gameManager = new GameManager();
+            InitializeComponent();
         }
 
         public void runAIGame()
@@ -79,7 +82,6 @@ namespace Game2048
                         break;
                     default:
                         return base.ProcessCmdKey(ref msg, keyData);
-
                 }
                 UpdateUI();
             }
