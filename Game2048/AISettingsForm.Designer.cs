@@ -69,7 +69,6 @@ namespace Game2048
             this.label2.Size = new System.Drawing.Size(203, 35);
             this.label2.TabIndex = 1;
             this.label2.Text = "Search Depth";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -80,7 +79,6 @@ namespace Game2048
             this.label3.Size = new System.Drawing.Size(29, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -163,7 +161,6 @@ namespace Game2048
             this.rbCorner.TabIndex = 10;
             this.rbCorner.TabStop = true;
             this.rbCorner.UseVisualStyleBackColor = true;
-            this.rbCorner.CheckedChanged += new System.EventHandler(this.rbCorner_CheckedChanged);
             // 
             // rbSnake
             // 

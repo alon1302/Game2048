@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Game2048.model
 {
+    /// <summary>
+    /// enum that represent the chosen strategy for the AI by the user
+    /// </summary>
     public enum AIStrategy
     {
-        SNAKE,
-        CORNER
+        SNAKE, // snake organize strategy
+        CORNER // corner organize strategy
     }
     class AIManager
     {
@@ -103,6 +106,14 @@ namespace Game2048.model
             return totalScore;
         }
 
+        /// <summary>
+        /// the function receives the current board and calculates the best score of a move to make
+        /// by the current search depth and the wanted one
+        /// </summary>
+        /// <param name="board">the current board</param>
+        /// <param name="currentDepth">the current search depth</param>
+        /// <param name="searchDepth">the maximum search depth</param>
+        /// <returns>the best score of a move</returns>
         private double CalculateMoveScore(BitBoard board, int currentDepth, int searchDepth)
         {
             double bestScore = double.MinValue;
@@ -120,6 +131,12 @@ namespace Game2048.model
             return bestScore;
         }
 
+        /// <summary>
+        /// the function receives a board and returns the maximum depth to search on this board 
+        /// by its empty cells
+        /// </summary>
+        /// <param name="board">the current board</param>
+        /// <returns>the maximum search depth for this board</returns>
         private int adaptSearchDepth(BitBoard board)
         {
             if (board.EmptyCells > 4)

@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 
 namespace Game2048.model
 {
+    /// <summary>
+    /// singleton class that represent a lookup table
+    /// array that the indicies are all the rows in the game and the values are object 
+    /// that represent the row after shift left and some other info about it
+    /// </summary>
     class LookupTable
     {
-        public const int ROW_SIZE = 4;
+        private static readonly object threadLock = new object(); // object that make the singleton threadable
+        private static LookupTable instance = null; // the single instance of this class
+        public ShiftedRow[] leftShifts = new ShiftedRow[0x10000]; // array of 65563 possible rows in the game
 
-        private static readonly object threadLock = new object();
-
-        private static LookupTable instance = null;
-        public ShiftedRow[] leftShifts = new ShiftedRow[0x10000];
-
+        /// <summary>
+        /// constructor that creates the singe instance of the lookup table 
+        /// </summary>
         private LookupTable()
         {
             InitTable();
         }
 
+        /// <summary>
+        /// property that returns the single instance of this class
+        /// creates it or returns it if exist
+        /// </summary>
         public static LookupTable Instance
         {
             get
@@ -35,15 +44,26 @@ namespace Game2048.model
             }
         }
 
+        /// <summary>
+        /// indexer that returns the value of the array of rows by the index
+        /// </summary>
+        /// <param name="i">the index in te array</param>
+        /// <returns>the shifted row value</returns>
         public ShiftedRow this[int i]
         {
             get { return leftShifts[i]; }
         }
 
+        /// <summary>
+        /// function that receives a byte array that represent one row/col
+        /// the function returns the number of the empty cells in this line
+        /// </summary>
+        /// <param name="line">byte array that represent one row/col</param>
+        /// <returns>number of the empty cells</returns>
         private ushort CalculateEmptyCells(byte[] line)
         {
             ushort emptyCells = 0;
-            for (int i = 0; i < ROW_SIZE; i++)
+            for (int i = 0; i < BitBoard.ROW_SIZE; i++)
             {
                 if (line[i] == 0)
                 {
@@ -53,6 +73,12 @@ namespace Game2048.model
             return emptyCells;
         }
 
+        /// <summary>
+        /// function that receives a byte array that represent one row/col
+        /// the function returns the score of this line
+        /// </summary>
+        /// <param name="line">byte array that represent one row/col</param>
+        /// <returns>number of the empty cells</returns>
         private uint CalculateScore(byte[] line)
         {
             uint score = 0;
@@ -67,6 +93,12 @@ namespace Game2048.model
             return score;
         }
 
+        /// <summary>
+        /// function that receives a byte array that represent one row/col
+        /// sets this line into type of ushort using bitwise operation
+        /// </summary>
+        /// <param name="newLine">byte array that represent one row/col</param>
+        /// <returns>ushort that represent the line</returns>
         private ushort ArrangeNewLine(byte[] newLine)
         {
             return (ushort)((newLine[0] << 0) |
@@ -75,6 +107,12 @@ namespace Game2048.model
             (newLine[3] << 12));
         }
 
+        /// <summary>
+        /// function that receives a an integer that represent one row/col
+        /// sets this int into a byte array and returns it
+        /// </summary>
+        /// <param name="originalLine">integer that represent one line</param>
+        /// <returns>byte array that represent one line</returns>
         private byte[] ArrangeOriginalLine(int originalLine)
         {
             byte[] line = new byte[4];
@@ -85,6 +123,11 @@ namespace Game2048.model
             return line;
         }
 
+        /// <summary>
+        /// function that initialize the lookup table
+        /// iterate over all the possible rows in the board and make them shift left using bitwise operations
+        /// save the result in the array at the index of the original with some more info about the original row
+        /// </summary>
         private void InitTable()
         {
             byte[] line;

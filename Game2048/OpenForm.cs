@@ -12,18 +12,27 @@ namespace Game2048
 {
     public partial class OpenForm : Form
     {
-        Timer rotation;
-        PictureBox currentFlip;
+        Timer timer; // timer for the images flip
+        PictureBox currentFlip; // the current image that the mouse on
 
+        /// <summary>
+        /// constructor that creats new form and set the settings for the timer 
+        /// </summary>
         public OpenForm()
         {
             InitializeComponent();
-            rotation = new Timer();
-            rotation.Interval = 50;
-            rotation.Tick += rotationTimer_Tick;
+            timer = new Timer();
+            timer.Interval = 50;
+            timer.Tick += rotationTimer_Tick;
             AddEventHandlers();
         }
 
+        /// <summary>
+        /// auto function for the tick event of the timer
+        /// the function flip the current image by 90 degrees
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
         private void rotationTimer_Tick(object sender, EventArgs e)
         {
             Image flip = currentFlip.Image;
@@ -31,17 +40,35 @@ namespace Game2048
             currentFlip.Image = flip;
         }
 
+        /// <summary>
+        /// auto function for the mouse enter event of all the picturebox in this form
+        /// the function sets the current picture and starts the timer 
+        /// </summary>
+        /// <param name="sender">auto parameter that represent the picture</param>
+        /// <param name="e">auto parameter no use</param>
         private void pictureBox_MouseEnter(object sender, EventArgs e)
         {
             currentFlip = (PictureBox)sender;
-            rotation.Start();
+            timer.Start();
         }
 
+        /// <summary>
+        /// auto function for the mouse leave event of all the picturebox in this form
+        /// the function stops the timer
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
         private void pictureBox_MouseLeave(object sender, EventArgs e)
         {
-            rotation.Stop();
+            timer.Stop();
         }
 
+        /// <summary>
+        /// auto function fot the click event on the single player "button"
+        /// the function creates new game form, make the current form hide and make the new form show 
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
         private void label3_Click(object sender, EventArgs e)
         {
             GameForm gameForm = new GameForm();
@@ -49,6 +76,12 @@ namespace Game2048
             gameForm.Show();
         }
 
+        /// <summary>
+        /// auto function fot the click event on the AI player "button"
+        /// the function creates new AI settings form, make the current form hide and make the new form show 
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
         private void label4_Click(object sender, EventArgs e)
         {
             AISettingsForm settingsForm = new AISettingsForm();
@@ -56,6 +89,9 @@ namespace Game2048
             settingsForm.Show();
         }
 
+        /// <summary>
+        /// function that add the mose enter and leave events for all the picture boxes
+        /// </summary>
         private void AddEventHandlers()
         {
             pictureBox1.MouseEnter += pictureBox_MouseEnter;
@@ -83,7 +119,5 @@ namespace Game2048
             pictureBox12.MouseEnter += pictureBox_MouseEnter;
             pictureBox12.MouseLeave += pictureBox_MouseLeave;
         }
-
-
     }
 }
