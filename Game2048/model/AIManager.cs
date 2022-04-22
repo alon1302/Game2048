@@ -53,7 +53,7 @@ namespace Game2048.model
                 BitBoard cloned = (BitBoard)board.Clone();
                 if (cloned.ShiftBoard(move))
                 {
-                    currentScore = GenerateScore(cloned, 0, adaptSearchDepth(cloned) - 1);
+                    currentScore = CreateAvgExpectation(cloned, 0, GetDepthByBoard(cloned) - 1);
                     if (currentScore > bestScore)
                     {
                         bestScore = currentScore;
@@ -73,7 +73,7 @@ namespace Game2048.model
         /// <param name="currentDepth">the current search depth</param>
         /// <param name="searchDepth">the maximum search depth</param>
         /// <returns>the score of the current board base on the next moves</returns>
-        private double GenerateScore(BitBoard board, int currentDepth, int searchDepth)
+        private double CreateAvgExpectation(BitBoard board, int currentDepth, int searchDepth)
         {
             Transposition value;
             if (_transpositionTable.TryGetValue(board.BoardKey, out value) && value.Depth <= currentDepth)
@@ -124,7 +124,7 @@ namespace Game2048.model
                 clone = (BitBoard)board.Clone();
                 if (clone.ShiftBoard(move))
                 {
-                    currentScore = GenerateScore(clone, currentDepth + 1, searchDepth);
+                    currentScore = CreateAvgExpectation(clone, currentDepth + 1, searchDepth);
                     bestScore = (currentScore > bestScore) ? currentScore : bestScore; 
                 }
             }
@@ -137,7 +137,7 @@ namespace Game2048.model
         /// </summary>
         /// <param name="board">the current board</param>
         /// <returns>the maximum search depth for this board</returns>
-        private int adaptSearchDepth(BitBoard board)
+        private int GetDepthByBoard(BitBoard board)
         {
             if (board.EmptyCells > 4)
                 return _depth;

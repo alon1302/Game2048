@@ -75,7 +75,7 @@ namespace Game2048.model
         /// function that return true if the game is over
         /// </summary>
         /// <returns></returns>
-        public bool IsGameOver()
+        public bool IsGameLost()
         {
             return Board.IsLostBoard();
         }

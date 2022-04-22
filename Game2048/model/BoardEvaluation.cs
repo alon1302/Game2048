@@ -2,14 +2,13 @@
 {
     class BoardEvaluation
     {
-        public const double EMPTY_CELL_SCORE = 128.0f; // score of an empty cell
-        public const double MERGE_CELL_SCORE = 256.0f; // score of a mergeable cell
-        public const double GAME_LOSE_SCORE = -5000000.0f; // score of a lose
-        public const double GAME_WON_SCORE = 5000000.0f; // score of a win
+        private const double EMPTY_CELL_SCORE = 128.0f; // score of an empty cell
+        private const double MERGE_CELL_SCORE = 256.0f; // score of a mergeable cell
+        private const double GAME_WON_SCORE = 5000000.0f; // score of a win
 
         private LookupTable lookupTable = LookupTable.Instance; // reference to the global lookup table
 
-        public static int[,] snakeStrategy =
+        private static int[,] snakeStrategy =
         {
             {1024, 512, 256, 128},
             {8, 16, 32, 64},
@@ -17,7 +16,7 @@
             {0, 0, 0, 0}
         }; // weight matrix to the snake strategy
 
-        public static int[,] cornerStrategy =
+        private static int[,] cornerStrategy =
         {
             {4096, 1024, 256, 64},
             {1024, 256, 64, 16},
@@ -41,7 +40,7 @@
         /// <param name="board">the current board</param>
         /// <param name="strategy">the chosen strategy</param>
         /// <returns>the score of the board according to the chosen strategy</returns>
-        private static double EvaluatePositionByStrategy(BitBoard board, AIStrategy strategy)
+        private static double EvaluateByStrategy(BitBoard board, AIStrategy strategy)
         {
             int[,] matrix = GetMatrixByStrategy(strategy);
             double score = 0;
@@ -84,7 +83,7 @@
         /// <returns>the evaluation of the current board</returns>
         public static double Evaluate(BitBoard board, AIStrategy strategy)
         {
-            return EvaluatePositionByStrategy(board, strategy)
+            return EvaluateByStrategy(board, strategy)
              + EvaluateEmptyCells(board)
              + EvaluateMergeableCells(board)
              + EvaluateWon(board);

@@ -347,17 +347,6 @@ namespace Game2048.model
         }
 
         /// <summary>
-        /// function that compares the board with another one
-        /// </summary>
-        /// <param name="obj">the other board</param>
-        /// <returns>true if equals</returns>
-        public override bool Equals(object obj)
-        {
-            return obj is BitBoard board &&
-                   _bitBoard == board._bitBoard;
-        }
-
-        /// <summary>
         /// function that returns a deep copy of the board
         /// </summary>
         /// <returns>deep copy of the board</returns>

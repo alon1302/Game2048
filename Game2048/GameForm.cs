@@ -149,7 +149,7 @@ namespace Game2048
             pictureBox1.Refresh();
             label1.Text = gameManager.BoardScore.ToString();
             label1.Refresh();
-            if (gameManager.IsGameOver())
+            if (gameManager.IsGameLost())
             {
                 MessageBox.Show("game over"); // TODO: end game screen
             }
