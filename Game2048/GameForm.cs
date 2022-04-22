@@ -21,6 +21,15 @@ namespace Game2048
         bool firstClick = true; // if the key press was the first
 
         /// <summary>
+        /// constructor that creates form for user play
+        /// </summary>
+        public GameForm()
+        {
+            gameManager = new GameManager();
+            InitializeComponent();
+        }
+
+        /// <summary>
         /// constructor that receives the settings of the AI and creates new form for AI play
         /// </summary>
         /// <param name="depth">the maximum depth for the AI</param>
@@ -30,15 +39,6 @@ namespace Game2048
             gameManager = new GameManager();
             InitializeComponent();
             AIManager = new AIManager(depth, strategy);                
-        }
-
-        /// <summary>
-        /// constructor that creates form for user play
-        /// </summary>
-        public GameForm()
-        {
-            gameManager = new GameManager();
-            InitializeComponent();
         }
 
         /// <summary>

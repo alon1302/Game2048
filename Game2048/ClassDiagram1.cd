@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Game2048.model.AIManager">
+    <Position X="5.5" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIIEAAAAAAABAAKAIAAQAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\AIManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_strategy" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_transpositionTable" />
+      <Field Name="_directions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Game2048.model.BitBoard">
+    <Position X="15.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAQCAAAAAaIggACAAJYAAgAMACAIIAEAyIAAQgABA=</HashCode>
+      <FileName>model\BitBoard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="lookupTable" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Game2048.model.BoardEvaluation">
+    <Position X="8.5" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAEIAAAAAAEAAAAwCAAJAACQAAAAAAgAAAAAA=</HashCode>
+      <FileName>model\BoardEvaluation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="lookupTable" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game2048.model.CellCreator">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\CellCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.model.GameManager">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAIAAAEAQAAAEAAAAAAAAAAAAAACAAAAI=</HashCode>
+      <FileName>model\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_board" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Game2048.model.LookupTable">
+    <Position X="11.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAAAIEAAAAAACAABAAAAAAJAAAAAQAAAAAAQAAA=</HashCode>
+      <FileName>model\LookupTable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="leftShifts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Game2048.model.Position">
+    <Position X="18" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.model.ShiftedRow">
+    <Position X="11.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAgAAAAIAggAAAAAAAAwAgAAAAIAQAAAAAAAAAA=</HashCode>
+      <FileName>model\ShiftedRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.model.Transposition">
+    <Position X="2.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAIAAAAAAAAAAAgAAAAIAAAAAA=</HashCode>
+      <FileName>model\Transposition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.view.GraphicsManager">
+    <Position X="18" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAgAAAAAAAAAAAAAABAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>view\GraphicsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.AISettingsForm">
+    <Position X="6.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACBQAJAAAACAAAECACAAAAAAACQAIABAAAA=</HashCode>
+      <FileName>AISettingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.GameForm">
+    <Position X="8.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAQACAAECQAABAAAACACAACACAIAAAAAEAAAABAAAA=</HashCode>
+      <FileName>GameForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.OpenForm">
+    <Position X="4.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQEIhQAACAAARAAAAGAQAACAAAAAAEAQACgAgBAAAA=</HashCode>
+      <FileName>OpenForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game2048.Program">
+    <Position X="2.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Game2048.model.AIStrategy">
+    <Position X="2.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\AIManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Game2048.model.Direction">
+    <Position X="4.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAQAAAAAAAAICAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>model\Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
