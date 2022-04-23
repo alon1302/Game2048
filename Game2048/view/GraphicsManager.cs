@@ -1,10 +1,6 @@
 ﻿using Game2048.model;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game2048.view
 {

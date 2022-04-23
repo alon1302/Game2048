@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace Game2048.model
 {
@@ -14,7 +13,7 @@ namespace Game2048.model
 
         private uint _score; // the current score of the board
         private int _emptyCells; // number of empty cells in the board
-        private bool _isWon; // winning borad or no
+        private bool _isWon; // winning board or no
 
         private LookupTable lookupTable = LookupTable.Instance; // pointer to the global lookup table
 

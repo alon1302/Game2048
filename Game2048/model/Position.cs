@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game2048.model
+﻿namespace Game2048.model
 {
     /// <summary>
     /// class that represent a cell location in the board

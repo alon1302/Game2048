@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Game2048
@@ -90,7 +84,7 @@ namespace Game2048
         }
 
         /// <summary>
-        /// function that add the mose enter and leave events for all the picture boxes
+        /// function that add the mouse enter and leave events for all the picture boxes
         /// </summary>
         private void AddEventHandlers()
         {
