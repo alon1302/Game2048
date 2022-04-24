@@ -10,12 +10,12 @@
       <Field Name="_strategy" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Field Name="_transpositionTable" />
       <Field Name="_directions" />
+      <Field Name="_transpositionTable" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Game2048.model.BitBoard">
-    <Position X="15.25" Y="6.5" Width="2.5" />
+    <Position X="15.75" Y="6.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>gAQAQCAAAAAaIggACAAJYAAgAMACAIIAEAyIAAQgABA=</HashCode>
       <FileName>model\BitBoard.cs</FileName>
@@ -26,7 +26,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Game2048.model.BoardEvaluation">
-    <Position X="8.5" Y="8" Width="2" />
+    <Position X="9.5" Y="8" Width="2" />
     <TypeIdentifier>
       <HashCode>AABAAAAAEIAAAAAAEAAAAwCAAJAACQAAAAAAgAAAAAA=</HashCode>
       <FileName>model\BoardEvaluation.cs</FileName>
@@ -44,6 +44,11 @@
   </Class>
   <Class Name="Game2048.model.GameManager">
     <Position X="13" Y="3.25" Width="1.5" />
+    <AssociationLine Name="_board" Type="Game2048.model.BitBoard">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.778" Y="0.098" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEAIAAAEAQAAAEAAAAAAAAAAAAAACAAAAI=</HashCode>
       <FileName>model\GameManager.cs</FileName>
@@ -53,7 +58,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Game2048.model.LookupTable">
-    <Position X="11.75" Y="7.75" Width="1.75" />
+    <Position X="12.75" Y="7.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AJAAAAAAIEAAAAAACAABAAAAAAJAAAAAQAAAAAAQAAA=</HashCode>
       <FileName>model\LookupTable.cs</FileName>
@@ -63,14 +68,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Game2048.model.Position">
-    <Position X="18" Y="8.75" Width="1.5" />
+    <Position X="19" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAEAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>model\Position.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Game2048.model.ShiftedRow">
-    <Position X="11.75" Y="12" Width="1.5" />
+    <Position X="12.75" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAgAAAAIAggAAAAAAAAwAgAAAAIAQAAAAAAAAAA=</HashCode>
       <FileName>model\ShiftedRow.cs</FileName>
@@ -84,7 +89,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Game2048.view.GraphicsManager">
-    <Position X="18" Y="6.5" Width="1.5" />
+    <Position X="19" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAgAAAAAAAAAAAAAABAAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>view\GraphicsManager.cs</FileName>
@@ -103,6 +108,10 @@
       <HashCode>AEAQACAAECQAABAAAACACAACACAIAAAAAEAAAABAAAA=</HashCode>
       <FileName>GameForm.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="AIManager" />
+      <Field Name="gameManager" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Game2048.OpenForm">
     <Position X="4.5" Y="1.25" Width="2" />
