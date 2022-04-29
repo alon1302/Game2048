@@ -3,6 +3,7 @@ using Game2048.view;
 using System;
 using System.Windows.Forms;
 using System.Threading;
+using System.ComponentModel;
 
 namespace Game2048
 {
@@ -11,7 +12,8 @@ namespace Game2048
         private GameManager gameManager; // instance of game manager
         private AIManager AIManager; // instance of AI manager
 
-        bool firstClick = true; // if the key press was the first
+        private delegate void DELEGATE();
+        private Thread gameAIThread;
 
         /// <summary>
         /// constructor that creates form for user play
@@ -27,11 +29,16 @@ namespace Game2048
         /// </summary>
         /// <param name="depth">the maximum depth for the AI</param>
         /// <param name="strategy">the chosen strategy for the AI</param>
-        public GameForm(int depth, AIStrategy strategy)
+        public GameForm(int depth, AIStrategy strategy) : this()
         {
-            gameManager = new GameManager();
-            InitializeComponent();
-            AIManager = new AIManager(depth, strategy);                
+            AIManager = new AIManager(depth, strategy);
+            StartNewAIGame();
+        }
+
+        private void StartNewAIGame()
+        {
+            gameAIThread = new Thread(new ThreadStart(runAIGame));
+            gameAIThread.Start();
         }
 
         /// <summary>
@@ -40,6 +47,7 @@ namespace Game2048
         /// </summary>
         public void runAIGame()
         {
+            DELEGATE updateUIDelegate = new DELEGATE(UpdateUI);
             bool game = true;
             Direction currentMove;
             while (game)
@@ -52,7 +60,7 @@ namespace Game2048
                 else
                 {
                     gameManager.ShiftBoard(currentMove);
-                    UpdateUI();
+                    this.Invoke(updateUIDelegate);
                     Thread.Sleep(100);
                 }
             }
@@ -86,17 +94,6 @@ namespace Game2048
                         return base.ProcessCmdKey(ref msg, keyData);
                 }
                 UpdateUI();
-            }
-            else
-            {
-                if (keyData == Keys.Enter)
-                {           
-                    if (firstClick)
-                    {
-                        runAIGame();
-                        firstClick = false;
-                    }
-                }
             }  
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -131,6 +128,11 @@ namespace Game2048
         {
             gameManager = new GameManager();
             UpdateUI();
+            if (AIManager != null)
+            {
+                gameAIThread.Abort();
+                StartNewAIGame();
+            }
         }
 
         /// <summary>
