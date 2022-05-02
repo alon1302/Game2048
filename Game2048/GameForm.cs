@@ -14,6 +14,7 @@ namespace Game2048
 
         private delegate void DELEGATE();
         private Thread gameAIThread;
+        bool game;
 
         /// <summary>
         /// constructor that creates form for user play
@@ -48,7 +49,7 @@ namespace Game2048
         public void runAIGame()
         {
             DELEGATE updateUIDelegate = new DELEGATE(UpdateUI);
-            bool game = true;
+            game = true;
             Direction currentMove;
             while (game)
             {
@@ -119,23 +120,6 @@ namespace Game2048
         }
 
         /// <summary>
-        /// auto function for the click event on the restart button
-        /// the function restarts the game 
-        /// </summary>
-        /// <param name="sender">auto parameter no use</param>
-        /// <param name="e">auto parameter no use</param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            gameManager = new GameManager();
-            UpdateUI();
-            if (AIManager != null)
-            {
-                gameAIThread.Abort();
-                StartNewAIGame();
-            }
-        }
-
-        /// <summary>
         /// function that update the view for the user
         /// paint the board set the score and check for lose to alert the user
         /// </summary>
@@ -148,6 +132,38 @@ namespace Game2048
             {
                 MessageBox.Show("game over"); // TODO: end game screen
             }
+        }
+
+        /// <summary>
+        /// auto function for the click event on the restart button
+        /// the function restarts the game 
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
+        private void picturebox_restart_Click(object sender, EventArgs e)
+        {
+            gameManager = new GameManager();
+            UpdateUI();
+            if (AIManager != null)
+            {
+                gameAIThread.Abort();
+                StartNewAIGame();
+            }
+        }
+
+        /// <summary>
+        /// auto function for the click event on the home button
+        /// the function restarts the game 
+        /// </summary>
+        /// <param name="sender">auto parameter no use</param>
+        /// <param name="e">auto parameter no use</param>
+        private void pictureBox_home_Click(object sender, EventArgs e)
+        {
+            if (AIManager != null)
+                gameAIThread.Abort();
+            OpenForm openForm = new OpenForm();
+            openForm.Show();
+            this.Hide();
         }
     }
 }
