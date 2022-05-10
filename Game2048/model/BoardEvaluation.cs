@@ -6,8 +6,6 @@
         private const double MERGE_CELL_SCORE = 256.0f; // score of a mergeable cell
         private const double GAME_WON_SCORE = 5000000.0f; // score of a win
 
-        private LookupTable lookupTable = LookupTable.Instance; // reference to the global lookup table
-
         private static int[,] snakeStrategy =
         {
             {1024, 512, 256, 128},
